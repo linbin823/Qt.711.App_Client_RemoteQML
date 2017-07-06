@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>ListViewDynamic.qml</file>
+        <file>ListViewDynamic/images/ok-32.png</file>
+        <file>ListViewDynamic/images/ok-24.png</file>
+        <file>ListViewDynamic/images/ok-16.png</file>
+        <file>ListViewDynamic/images/loading-32.gif</file>
+        <file>ListViewDynamic/images/loading-16.gif</file>
+        <file>ListViewDynamic/images/dot.gif</file>
+        <file>ListViewDynamic/images/bigimg.jpg</file>
+        <file>ListViewDynamic/images/arrow-up-32.png</file>
+        <file>ListViewDynamic/images/arrow-up-24.png</file>
+        <file>ListViewDynamic/images/arrow-up-16.png</file>
+        <file>ListViewDynamic/images/arrow-down-32.png</file>
+        <file>ListViewDynamic/images/arrow-down-24.png</file>
+        <file>ListViewDynamic/images/arrow-down-16.png</file>
+        <file>ListViewDynamic/images/apple2.gif</file>
+        <file>ListViewDynamic/images/apple.gif</file>
+    </qresource>
+</RCC>

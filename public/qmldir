@@ -1,0 +1,8 @@
+ColorPicker ColorPicker.qml
+DatePicker DatePicker.qml
+FoldableBar FoldableBar.qml
+Lights Lights.qml
+ListViewDynamic ListViewDynamic.qml
+MultiTouch MultiTouch.qml
+ValueInput ValueInput.qml
+WheelList WheelList.qml

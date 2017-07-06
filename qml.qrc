@@ -1,0 +1,41 @@
+<RCC>
+    <qresource prefix="/">
+        <file>NaviPage.qml</file>
+        <file>test.qml</file>
+        <file>trendView/TrendView.qml</file>
+        <file>rtTable/RTTable.qml</file>
+        <file>mimic/Mimic.qml</file>
+        <file>mimic/Module/MimicView.qml</file>
+        <file>trendView/Module/TrendViewerToolBar.qml</file>
+        <file>trendView/Module/TrendViewerStateBar.qml</file>
+        <file>trendView/Module/TrendViewerContent.qml</file>
+        <file>trendView/Module/TrendSettings.qml</file>
+        <file>public/WheelList.qml</file>
+        <file>public/ValueInput.qml</file>
+        <file>public/MultiTouch.qml</file>
+        <file>public/Lights.qml</file>
+        <file>public/FoldableBar.qml</file>
+        <file>public/DatePicker.qml</file>
+        <file>public/ColorPicker.qml</file>
+        <file>mimic/Module/MimicViewerToolbar.qml</file>
+        <file>rtTable/Module/dataSource.js</file>
+        <file>public/ListViewDynamic.qml</file>
+        <file>public/ListViewDynamic/images/ok-32.png</file>
+        <file>public/ListViewDynamic/images/ok-24.png</file>
+        <file>public/ListViewDynamic/images/ok-16.png</file>
+        <file>public/ListViewDynamic/images/loading-32.gif</file>
+        <file>public/ListViewDynamic/images/loading-16.gif</file>
+        <file>public/ListViewDynamic/images/IMG_20170704_170303.jpg</file>
+        <file>public/ListViewDynamic/images/dot.gif</file>
+        <file>public/ListViewDynamic/images/bigimg.jpg</file>
+        <file>public/ListViewDynamic/images/arrow-up-32.png</file>
+        <file>public/ListViewDynamic/images/arrow-up-24.png</file>
+        <file>public/ListViewDynamic/images/arrow-up-16.png</file>
+        <file>public/ListViewDynamic/images/arrow-down-32.png</file>
+        <file>public/ListViewDynamic/images/arrow-down-24.png</file>
+        <file>public/ListViewDynamic/images/arrow-down-16.png</file>
+        <file>public/ListViewDynamic/images/apple2.gif</file>
+        <file>public/ListViewDynamic/images/apple.gif</file>
+        <file>public/qmldir</file>
+    </qresource>
+</RCC>

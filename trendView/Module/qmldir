@@ -1,0 +1,4 @@
+TrendSettings TrendSettings.qml
+TrendViewerContent TrendViewerContent.qml
+TrendViewerStateBar TrendViewerStateBar.qml
+TrendViewerToolBar TrendViewerToolBar.qml

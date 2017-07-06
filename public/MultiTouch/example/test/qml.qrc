@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>multiTouchExample.qml</file>
+        <file>MultiTouch.qml</file>
+    </qresource>
+</RCC>
