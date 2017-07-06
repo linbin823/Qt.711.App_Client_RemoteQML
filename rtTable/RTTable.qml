@@ -99,11 +99,23 @@ ListViewDynamic{
                         dynamicRoles: true
                     }
                     Component.onCompleted: {
-                        DataFunctions.subSystemsName(wholeDataUrl, systemSelectorModel, function(){
-                            realtimeDataTable.systemName = systemSelectorModel.get(0).text;
-                            realtimeDataTable.maxSize =  systemSelectorModel.get(0).number;
-                            realtimeDataTable.loadedSize = 0;
-                        });
+                        DataFunctions.subSystemsName(wholeDataUrl,
+                            //process received data
+                            function(res){//res is json object contains data
+                                var i;
+                                for(i=1; i<res.length; i++){
+                                    systemSelectorModel.append(
+                                        {
+                                            text: res[i].class_name,
+                                            number: res[i].class_pointnum,
+                                            description: res[i].description
+                                        })
+                                }
+                                realtimeDataTable.systemName = systemSelectorModel.get(0).text;
+                                realtimeDataTable.maxSize =  systemSelectorModel.get(0).number;
+                                realtimeDataTable.loadedSize = 0;
+                            }
+                        );
                     }
                     onCurrentIndexChanged: {
                         realtimeDataTable.systemName  = textAt(currentIndex);
@@ -119,9 +131,43 @@ ListViewDynamic{
                         realtimeDataTable.model.clear();
                         var count = realtimeDataTable.maxSize<realtimeDataTable.pageSize?
                                     realtimeDataTable.maxSize:realtimeDataTable.pageSize;
-                        DataFunctions.loadTagInfo(wholeDataUrl,model,systemName,0, count, function(successNum){
-                            realtimeDataTable.loadedSize += successNum;
-                        });
+                        DataFunctions.loadTagInfo(wholeDataUrl, systemName, 0, count,
+                            //process received data
+                            function(res){//res is json object contains data
+                                if( res[0].c !== realtimeDataTable.systemName || res[0].t !== "info" ||
+                                        (res[0].o+res[0].n) > realtimeDataTable.maxSize){
+                                    console.log("loadTagInfo received obselete data")
+                                    return;
+                                }
+                                var appendCount=0;
+                                var found = false;
+                                for(var i=1; i<res.length; i++){
+
+                                    for(var j=0; j<realtimeDataTable.model.count; j++){
+                                        if(realtimeDataTable.model.get(j).id === res[i].id){
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    if(found){
+                                        //duplicated! continue
+                                        continue
+                                    }
+                                    realtimeDataTable.model.append(
+                                    {
+                                        index: i,
+                                        description: res[i].description,
+                                        id: res[i].id,
+                                        point_name: res[i].point_name,
+                                        type: res[i].type,
+                                        uint: res[i].uint,
+                                        value: "",
+                                        lastUpdateTime: ""
+                                    })
+                                    appendCount++;
+                                }
+                                realtimeDataTable.loadedSize += appendCount;
+                            });
                     }
                 }//end of ComboBox
             }
@@ -277,10 +323,46 @@ ListViewDynamic{
             return;
         }
         var count = (maxSize-loadedSize)<pageSize? (maxSize-loadedSize):pageSize;
-        DataFunctions.loadTagInfo(wholeDataUrl,model,systemName,loadedSize,count,function(successNum){
-            loadedSize += successNum
-            hideCallback()
-        });
+        DataFunctions.loadTagInfo(wholeDataUrl,systemName,loadedSize,count,
+                //process received data
+                function(res){//res is json object contains data
+                    if( res[0].c !== systemName || res[0].t !== "info" ||
+                            (res[0].c+res[0].t+res[0].o+res[0].n) > maxSize){
+                        console.log(res[0].o+res[0].n+"loadTagInfo received obselete data")
+                        hideCallback()
+                        return;
+                    }
+                    var appendCount=0;
+                    var found = false;
+                    for(var i=1; i<res.length; i++){
+
+                        for(var j=0; j<model.count; j++){
+                            if(model.get(j).id === res[i].id){
+                                found = true;
+                                break;
+                            }
+                        }
+                        if(found){
+                            //duplicated! continue
+                            hideCallback()
+                            continue
+                        }
+                        model.append(
+                        {
+                            index: i,
+                            description: res[i].description,
+                            id: res[i].id,
+                            point_name: res[i].point_name,
+                            type: res[i].type,
+                            uint: res[i].uint,
+                            value: "",
+                            lastUpdateTime: ""
+                        })
+                        appendCount++;
+                    }
+                    loadedSize += appendCount;
+                    hideCallback()
+                });
     }
     //底部手动停止信号,停止刷新新数据
     //none parameters
@@ -291,6 +373,16 @@ ListViewDynamic{
     //parameters: var model
     onUpdateTriger: {
         //serverUrl,model,subsystem,offset,number
-        DataFunctions.loadTagValue(wholeDataUrl,model,systemName,0,loadedSize)
+        DataFunctions.loadTagValue(wholeDataUrl,systemName,0,loadedSize,
+            function(res){
+                for(var i in res){
+                    for(var j=0; j<model.count; j++){
+                        if(model.get(j).id === res[i].id){
+                            model.setProperty(j,"value", res[i].value)
+                            model.setProperty(j,"lastUpdateTime", Date() )
+                        }
+                    }
+                }
+            });
     }
 }//end of ListViewEx

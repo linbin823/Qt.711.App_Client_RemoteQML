@@ -364,7 +364,7 @@ ListView {
     }
 
     // 滚动轴
-    ScrollIndicator.vertical: ScrollIndicator { id: vbar; active: listRoot.moving }
+    ScrollBar.vertical: ScrollBar{ id: vbar; active: listRoot.moving; width:listRoot.width*0.06 }
 
     //updateTimer
     Timer{

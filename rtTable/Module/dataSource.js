@@ -1,4 +1,4 @@
-function subSystemsName(serverUrl,model,finished){
+function subSystemsName(serverUrl, process){
     var xhr = new XMLHttpRequest();
     var url = serverUrl+"/api/index.php?c=all&t=info"
     console.log(url)
@@ -17,20 +17,12 @@ function subSystemsName(serverUrl,model,finished){
                 console.log(e)
                 return;
             }
-            var i;
-            for(i=0; i<res.length; i++){
-                model.append( {
-                                 text: res[i].class_name,
-                                 number: res[i].class_pointnum,
-                                 description: res[i].description
-                             } )
-            }
-            finished()
+            process(res)
         }
     }
 }
 
-function loadTagInfo(serverUrl,model,subsystem,offset,number,finished){
+function loadTagInfo(serverUrl,subsystem,offset,number,process){
     var xhr = new XMLHttpRequest();
     var url = serverUrl+"/api/index.php?c="+ encodeURIComponent(subsystem) +"&t=info&o="+offset+"&n="+number
     console.log(url)
@@ -49,25 +41,12 @@ function loadTagInfo(serverUrl,model,subsystem,offset,number,finished){
                 console.log(e)
                 return;
             }
-            var i;
-            for(i=0; i<res.length; i++){
-                model.append( {
-                                 index: i,
-                                 description: res[i].description,
-                                 id: res[i].id,
-                                 point_name: res[i].point_name,
-                                 type: res[i].type,
-                                 uint: res[i].uint,
-                                 value: "",
-                                 lastUpdateTime: ""
-                             } )
-            }
-            finished(i)
+            process(res)
         }
     }
 }
 
-function loadTagValue(serverUrl,model,subsystem,offset,number){
+function loadTagValue(serverUrl,subsystem,offset,number,process){
     var xhr = new XMLHttpRequest();
     var url = serverUrl+"/api/index.php?c="+ encodeURIComponent(subsystem) +"&t=value&o="+offset+"&n="+number
     //console.log(url)
@@ -86,14 +65,7 @@ function loadTagValue(serverUrl,model,subsystem,offset,number){
                 console.log(e)
                 return;
             }
-            for(var i in res){
-                for(var j=0; j<model.count; j++){
-                    if(model.get(j).id === res[i].id){
-                        model.setProperty(j,"value", res[i].value)
-                        model.setProperty(j,"lastUpdateTime", Date() )
-                    }
-                }
-            }
+            process(res);
         }
     }
 }
