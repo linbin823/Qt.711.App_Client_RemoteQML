@@ -19,6 +19,6 @@ Item {
     WebView {
         id: gisView
         anchors.fill: parent
-        url: "http://qydl.csic711.net/admin.php?m=dcrealdata&f=T1"
+        url: "http://qydl.csic711.net/admin2.php?m=dcrealdata&f=T1"
     }
 }
