@@ -134,7 +134,7 @@ ListViewDynamic{
                         DataFunctions.loadTagInfo(wholeDataUrl, systemName, 0, count,
                             //process received data
                             function(res){//res is json object contains data
-                                if( res[0].c !== realtimeDataTable.systemName || res[0].t !== "info" ||
+                                if( res[0].c !== realtimeDataTable.systemName || res[0].type !== "info" ||
                                         (res[0].o+res[0].n) > realtimeDataTable.maxSize){
                                     console.log("loadTagInfo received obselete data")
                                     return;
@@ -326,7 +326,7 @@ ListViewDynamic{
         DataFunctions.loadTagInfo(wholeDataUrl,systemName,loadedSize,count,
                 //process received data
                 function(res){//res is json object contains data
-                    if( res[0].c !== systemName || res[0].t !== "info" ||
+                    if( res[0].c !== systemName || res[0].type !== "info" ||
                             (res[0].c+res[0].t+res[0].o+res[0].n) > maxSize){
                         console.log(res[0].o+res[0].n+"loadTagInfo received obselete data")
                         hideCallback()
