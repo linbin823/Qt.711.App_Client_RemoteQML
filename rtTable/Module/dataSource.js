@@ -51,7 +51,7 @@ function loadTagValue(serverUrl,subsystem,offset,number,process){
     var xhr = new XMLHttpRequest();
     var url = serverUrl+"/admin2.php?m=dcappinterface&f=getpointlist&c="+
             encodeURIComponent(subsystem) +"&t=value&o="+offset+"&n="+number
-    //console.log(url)
+    console.log(url)
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     xhr.send(null);
@@ -60,7 +60,7 @@ function loadTagValue(serverUrl,subsystem,offset,number,process){
             //console.log( "loadTagValueResponseHeaders" + xhr.getAllResponseHeaders())
         }
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            //console.log( "loadTagValueResponseText" + xhr.responseText)
+            console.log( "loadTagValueResponseText" + xhr.responseText)
             try{
                 var res = JSON.parse( xhr.responseText.trim() )
             }catch(e){
