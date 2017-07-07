@@ -1,6 +1,6 @@
 function subSystemsName(serverUrl, process){
     var xhr = new XMLHttpRequest();
-    var url = serverUrl+"/api/index.php?c=all&t=info"
+    var url = serverUrl+"/index.php?m=dcappinterface&f=getpointlist&c=all&t=info"
     console.log(url)
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -24,7 +24,8 @@ function subSystemsName(serverUrl, process){
 
 function loadTagInfo(serverUrl,subsystem,offset,number,process){
     var xhr = new XMLHttpRequest();
-    var url = serverUrl+"/api/index.php?c="+ encodeURIComponent(subsystem) +"&t=info&o="+offset+"&n="+number
+    var url = serverUrl+"/index.php?m=dcappinterface&f=getpointlist&c="+
+            encodeURIComponent(subsystem) +"&t=info&o="+offset+"&n="+number
     console.log(url)
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -48,7 +49,8 @@ function loadTagInfo(serverUrl,subsystem,offset,number,process){
 
 function loadTagValue(serverUrl,subsystem,offset,number,process){
     var xhr = new XMLHttpRequest();
-    var url = serverUrl+"/api/index.php?c="+ encodeURIComponent(subsystem) +"&t=value&o="+offset+"&n="+number
+    var url = serverUrl+"/index.php?m=dcappinterface&f=getpointlist&c="+
+            encodeURIComponent(subsystem) +"&t=value&o="+offset+"&n="+number
     //console.log(url)
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
