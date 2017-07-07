@@ -8,7 +8,6 @@ ListViewDynamic{
     id: realtimeDataTable
     anchors.fill: parent
     clip: true
-
     /****************************************
      *standard interface
      ****************************************/

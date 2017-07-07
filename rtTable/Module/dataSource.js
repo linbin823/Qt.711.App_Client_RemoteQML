@@ -1,3 +1,5 @@
+.import "../../public/aes.js" as AES
+
 function subSystemsName(serverUrl, process){
     var xhr = new XMLHttpRequest();
     var url = serverUrl+"/admin2.php?m=dcappinterface&f=getpointlist&c=all&type=info"
@@ -10,9 +12,11 @@ function subSystemsName(serverUrl, process){
             //console.log(xhr.getAllResponseHeaders())
         }
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            //console.log( "subSystemsName" + xhr.responseText)
+            console.log( "subSystemsName Encryption:" + xhr.responseText)
+            var decrypted = AES.decrypt(xhr.responseText.trim(), "&!!&!!!@");
+            console.log( "subSystemsName Decryption:" + xhr.responseText)
             try{
-                var res = JSON.parse( xhr.responseText.trim() )
+                var res = JSON.parse( decrypted )
             }catch(e){
                 console.log(e)
                 return;
