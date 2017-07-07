@@ -1,4 +1,3 @@
-.import "../../public/aes.js" as AES
 
 function subSystemsName(serverUrl, process){
     var xhr = new XMLHttpRequest();
@@ -12,14 +11,16 @@ function subSystemsName(serverUrl, process){
             //console.log(xhr.getAllResponseHeaders())
         }
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            console.log( "subSystemsName Encryption:" + xhr.responseText)
-            var decrypted = AES.decrypt(xhr.responseText.trim(), "&!!&!!!@");
-            console.log( "subSystemsName Decryption:" + xhr.responseText)
+            console.log( "subSystemsName:" + xhr.responseText)
+//            var ret;
+//            AES.decrypt(xhr.responseText.trim(), ret, 1)
+//            console.log( "subSystemsName Decryption:" + ret)
             try{
-                var res = JSON.parse( decrypted )
+                var res = JSON.parse( xhr.responseText.trim() )
             }catch(e){
                 console.log(e)
                 return;
+
             }
             process(res)
         }

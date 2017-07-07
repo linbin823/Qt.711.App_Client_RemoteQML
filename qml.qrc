@@ -37,6 +37,7 @@
         <file>public/ListViewDynamic/images/apple2.gif</file>
         <file>public/ListViewDynamic/images/apple.gif</file>
         <file>public/qmldir</file>
-        <file>public/aes.js</file>
+        <file>public/crypto-js/core.js</file>
+        <file>public/crypto-js/aes.js</file>
     </qresource>
 </RCC>

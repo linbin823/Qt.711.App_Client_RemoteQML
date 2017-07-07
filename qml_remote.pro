@@ -1,6 +1,9 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml quick webview
+
+//include(lib/QAes/QAes/QAes.pri)
+
 CONFIG += c++11
 
 SOURCES += main.cpp

@@ -202,7 +202,7 @@ ListViewDynamic{
             border.color: "darkgray"
             Text {
                 id: tagName
-                text: point_name
+                text: description
                 color: "black"
                 width: parent.width * 0.6
                 wrapMode: Text.Wrap
@@ -285,26 +285,7 @@ ListViewDynamic{
                     verticalAlignment: Text.AlignVCenter
                 }
             }//end of column
-            Flow{
-                width: parent.width * 0.3
-                height: parent.height
-                anchors.right: parent.right
-                anchors.rightMargin: parent.width * 0.04
-                y:parent.width * 0.005
-                spacing: parent.width * 0.005
 
-                Button{
-                    text: "现在刷新"
-                    onClicked: {
-                        dataSource.readOnce(model.modelData.tagID)
-                    }
-                }
-                Button{
-                    text: "趋势分析"
-                    onClicked: {
-                    }
-                }
-            }//end of Flow
         }//end of detailBarContent
 
     }//end of delegate
