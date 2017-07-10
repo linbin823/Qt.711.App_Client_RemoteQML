@@ -11,11 +11,10 @@ import Qt.labs.settings 1.0
 ApplicationWindow {
     id: appWindow
     visible: true
-    width: 640
-    height: 480
+    width:  720
+    height: 1184
     color: "white"
     title: qsTr("QYY")
-
 
     property string currentProjectName: qsTr("船舶数据中心")
 

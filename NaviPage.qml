@@ -9,8 +9,24 @@ StackView {
     id: naviRoot
     anchors.fill: parent
     clip:true
+    background: Rectangle{
+        anchors.fill: parent
+        color: "#e2ebed"
+    }
 
-    //standard interface
+    /****************************************
+     *standard interface
+     ****************************************/
+    property int    originPixelWidth: 720
+    property int    originPixelHeight: 1184
+    //quick function to caculate origin pixel x or origin pixel width to actual x or actual width
+    function actualX(absX){
+        return naviRoot.width/originPixelWidth*absX
+    }
+    //quick function to caculate origin pixel y or origin pixel height to actual y or actual height
+    function actualY(absY){
+        return naviRoot.height/originPixelHeight*absY
+    }
     property bool canGoBack : depth > 1
     function goBack(){
         if(depth > 1){
@@ -18,10 +34,8 @@ StackView {
             titleChanged( qsTr("数据中心") )
         }
     }
-
-    //data properties
+    //data properties,父页面写入
     property string wholeDataUrl :"http://127.0.0.1:8080"
-
     //to tell main page to change the title
     signal titleChanged(string title);
 
@@ -30,6 +44,7 @@ StackView {
         ListElement{
             name:       qsTr("实时数据")
             snapShot:   "./images/snapShot/RTTable.png"
+            snapShotPressed: "./images/snapShot/RTTable_p.png"
             enterance:  "./rtTable/RTTable.qml"
         }
         //"./mimic/Mimic.qml"
@@ -37,21 +52,25 @@ StackView {
         ListElement{
             name:       qsTr("MIMIC")
             snapShot:   "./images/snapShot/Mimic.png"
+            snapShotPressed: "./images/snapShot/Mimic_p.png"
             enterance:  "./mimic/Mimic.qml"
         }
         ListElement{
             name:       qsTr("历史数据")
             snapShot:   "./images/snapShot/HDTable.png"
+            snapShotPressed: "./images/snapShot/HDTable_p.png"
             enterance:  ""
         }
         ListElement{
             name:       qsTr("报警数据")
             snapShot:   "./images/snapShot/Alarm.png"
+            snapShotPressed: "./images/snapShot/Alarm_p.png"
             enterance:  ""
         }
         ListElement{
             name:       qsTr("数据趋势")
             snapShot:   "./images/snapShot/Trend.png"
+            snapShotPressed: "./images/snapShot/Trend_p.png"
             enterance:  "./trendView/TrendView.qml"
         }
     }
@@ -74,6 +93,7 @@ StackView {
             snapMode: GridView.SnapToRow
             delegate: Rectangle{
                 id:delegateRoot
+                color: "transparent"
                 width:  naviContent.width * 0.5
                 height: naviContent.width * 0.45
                 Image{

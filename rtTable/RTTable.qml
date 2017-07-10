@@ -8,9 +8,20 @@ ListViewDynamic{
     id: realtimeDataTable
     anchors.fill: parent
     clip: true
+
     /****************************************
      *standard interface
      ****************************************/
+    property int    originPixelWidth: 720
+    property int    originPixelHeight: 1184
+    //quick function to caculate origin pixel x or origin pixel width to actual x or actual width
+    function actualX(absX){
+        return realtimeDataTable.width/originPixelWidth*absX
+    }
+    //quick function to caculate origin pixel y or origin pixel height to actual y or actual height
+    function actualY(absY){
+        return realtimeDataTable.height/originPixelHeight*absY
+    }
     property bool canGoBack : false
     function goBack(){
         return false
@@ -21,8 +32,6 @@ ListViewDynamic{
     /****************************************
      *数据辅助参数
      ****************************************/
-    //顶部的搜索栏高度的比例
-    property real controlBarRatio: 0.2
     //一页20个数据点
     property int pageSize: 20
     //已经加载的数据点数
@@ -54,44 +63,45 @@ ListViewDynamic{
     headerComponent: Component{
         //topside control bar
         Rectangle{
-            width: realtimeDataTable.width
-            height: realtimeDataTable.height * controlBarRatio
-            color: '#f0f0f0'
+            width: actualX(720)
+            height: actualY(100)
+            color: '#e2ebed'
             Rectangle{
                 id: controlBar
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: parent.height * 0.4
-                anchors.leftMargin: 5
-                anchors.rightMargin: 5
+                height: actualY(60)
+                anchors.leftMargin: actualY(10)
+                anchors.rightMargin: actualY(10)
                 anchors.verticalCenter: parent.verticalCenter
+                color: "white"
                 border.color: '#d0d0d0'
                 border.width: 1
                 radius: height/2
 
                 Text{
                     id: selectorId
-                    height: controlBar.height * 0.8
                     text: qsTr("筛选:")
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: actualX(10)
                     anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: parent.height * 0.5
+                    font.pixelSize: actualY(26)
+                    color: "#333333"
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                 }
 
                 ComboBox{
                     id:systemSelector
-                    height: controlBar.height * 0.8
+                    height: actualY(60)
                     //editable: true
                     flat: true
                     anchors.left: selectorId.right
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: actualX(10)
                     anchors.right: parent.right
-                    anchors.rightMargin: 5
+                    anchors.rightMargin: actualX(5)
                     anchors.verticalCenter: selectorId.verticalCenter
-                    font.pixelSize: parent.height * 0.5
+                    font.pixelSize: actualY(26)
                     textRole: "text"
                     model: ListModel{
                         id:systemSelectorModel
@@ -166,7 +176,7 @@ ListViewDynamic{
                                     appendCount++;
                                 }
                                 realtimeDataTable.loadedSize += appendCount;
-                            });
+                            } );
                     }
                 }//end of ComboBox
             }
@@ -176,6 +186,7 @@ ListViewDynamic{
     footerComponent: Component{
         Column{
             width: realtimeDataTable.width
+            spacing: actualY(10)
             Text{
                 anchors.horizontalCenter: parent.horizontalCenter
                 text:"maxSize" + realtimeDataTable.maxSize
@@ -187,105 +198,119 @@ ListViewDynamic{
         }
     }//end of footerComponent
 
-
-
     //行UI代理
     delegate: FoldableBar{
         id:flodableBar
         //should not restrict height or width,
         //auto generated from the size of "mainBarContent" and "detailBarContent"
-        property real unitFontSize: realtimeDataTable.height / 8 * 0.25
         mainBarContent: Rectangle {
-            width : realtimeDataTable.width
-            height : realtimeDataTable.height / 8
+            width : actualX(720)
+            height : actualY(100)
             color: "white"
-            border.color: "darkgray"
             Text {
                 id: tagName
                 text: description
-                color: "black"
-                width: parent.width * 0.6
+                color: "#333333"
+                width: actualX(285)
                 wrapMode: Text.Wrap
-                font.pixelSize: unitFontSize
+                font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.02
+                anchors.leftMargin: actualY(30)
+            }
+            Rectangle{
+                width: 1
+                height: actualY(40)
+                color: "#cccccc"
+                anchors.left: tagName.right
+                anchors.verticalCenter: parent.verticalCenter
             }
             Text {
                 id: tagValue
                 text: value
-                color: "black"
-                width: parent.width * 0.1
+                color: "#333333"
+                width: actualX(180)
                 wrapMode: Text.Wrap
-                font.pixelSize: unitFontSize
+                font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: tagName.right
-                anchors.leftMargin: parent.width * 0.04
+                anchors.leftMargin: actualY(30)
+            }
+            Rectangle{
+                width: 1
+                height: actualY(40)
+                color: "#cccccc"
+                anchors.left: tagValue.right
+                anchors.verticalCenter: parent.verticalCenter
             }
             Text {
                 id: unit
                 text: uint
-                color: "black"
-                width: parent.width * 0.1
+                color: "#333333"
+                width: actualX(160)
                 wrapMode: Text.Wrap
-                font.pixelSize: unitFontSize
-                horizontalAlignment: Text.AlignRight
+                font.pixelSize: actualY(30)
+                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: tagValue.right
-                anchors.rightMargin: parent.width * 0.02
+                anchors.rightMargin: actualY(30)
             }
             Image {
                 id: img
-                source: flodableBar.isDetailShow? "../images/icons/icon-up.png" : "../images/icons/icon-down.png"
-                height: parent.height * 0.20
+                source: flodableBar.isDetailShow? "../images/icons/RTTableMore.png" : "../images/icons/RTTableMore_p.png"
+                width: actualX(40)
+                height: actualX(32)
                 fillMode: Image.PreserveAspectFit
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: unit.right
-                anchors.leftMargin: parent.width * 0.02
+            }
+            Rectangle{
+                height: 1
+                color: "#cccccc"
+                anchors.left: tagName.left
+                anchors.right: img.right
+                anchors.bottom: parent.bottom
             }
         }//end of mainBarContent
         detailBarContent: Rectangle{
-            color: "grey"
-            width : realtimeDataTable.width
-            height : realtimeDataTable.height / 4
-            border.color: "green"
-            Column{
-                width: parent.width * 0.6
-                height: parent.height
-                x:parent.width * 0.04
-                y:parent.width * 0.005
-                spacing: parent.width * 0.005
-                Text {
-                    id: tagID
-                    text: "测点编号:  " + id
-                    color: "black"
-                    font.pixelSize: unitFontSize
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                }
-                Text {
-                    id: tagLastUpdateTime
-                    text: "最后更新:  " + lastUpdateTime
-                    color: "black"
-                    font.pixelSize: unitFontSize
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                }
-                Text {
-                    id: tagDescription
-                    text: "描述:  " + description
-                    color: "black"
-                    font.pixelSize: unitFontSize
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                }
-            }//end of column
+            width : actualX(720)
+            height : actualY(200)
+            color: "#003366"
+            Text {
+                id: tagID
+                text: "测点编号:" + id
+                color: "#ffffff"
+                width: actualX(180)
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.Text.AlignJustify
+                verticalAlignment: Text.AlignVCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: actualY(50)
 
+
+            }
+            Text {
+                id: tagLastUpdateTime
+                text: "最后更新:  " + lastUpdateTime
+                color: "black"
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+            }
+            Text {
+                id: tagDescription
+                text: "描述:  " + description
+                color: "black"
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+            }
         }//end of detailBarContent
 
     }//end of delegate
