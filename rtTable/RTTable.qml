@@ -211,7 +211,7 @@ ListViewDynamic{
                 id: tagName
                 text: description
                 color: "#333333"
-                width: actualX(255)
+                width: actualX(270)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
@@ -251,7 +251,7 @@ ListViewDynamic{
                 id: unit
                 text: uint
                 color: "#333333"
-                width: actualX(80)
+                width: actualX(100)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
@@ -262,7 +262,7 @@ ListViewDynamic{
             }
             Image {
                 id: img
-                source: flodableBar.isDetailShow? "../images/icons/RTTableMore.png" : "../images/icons/RTTableMore_p.png"
+                source: flodableBar.isDetailShow? "../images/icons/RTTableMore_p.png" : "../images/icons/RTTableMore.png"
                 width: actualX(40)
                 height: actualX(32)
                 fillMode: Image.PreserveAspectFit
