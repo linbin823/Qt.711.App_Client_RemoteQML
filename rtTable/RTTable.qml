@@ -258,7 +258,7 @@ ListViewDynamic{
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: tagValue.right
-                anchors.rightMargin: actualY(30)
+                anchors.leftMargin: actualY(30)
             }
             Image {
                 id: img
