@@ -211,7 +211,7 @@ ListViewDynamic{
                 id: tagName
                 text: description
                 color: "#333333"
-                width: actualX(285)
+                width: actualX(255)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
@@ -231,14 +231,14 @@ ListViewDynamic{
                 id: tagValue
                 text: value
                 color: "#333333"
-                width: actualX(180)
+                width: actualX(160)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: tagName.right
-                anchors.leftMargin: actualY(30)
+                anchors.leftMargin: actualY(20)
             }
             Rectangle{
                 width: 1
@@ -251,14 +251,14 @@ ListViewDynamic{
                 id: unit
                 text: uint
                 color: "#333333"
-                width: actualX(160)
+                width: actualX(80)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: tagValue.right
-                anchors.leftMargin: actualY(30)
+                anchors.leftMargin: actualY(20)
             }
             Image {
                 id: img
