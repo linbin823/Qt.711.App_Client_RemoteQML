@@ -272,8 +272,10 @@ ListViewDynamic{
             Rectangle{
                 height: 1
                 color: "#cccccc"
-                anchors.left: tagName.left
-                anchors.right: img.right
+                anchors.left: parent.left
+                anchors.leftMargin: actualY(30)
+                anchors.right: parent.right
+                anchors.rightMargin: actualY(30)
                 anchors.bottom: parent.bottom
             }
         }//end of mainBarContent
@@ -306,6 +308,13 @@ ListViewDynamic{
                 anchors.leftMargin: actualY(15)
                 anchors.top: tagID.top
             }
+            Rectangle{
+                width: actualY(6200)
+                height: 1
+                color: "#4d80b3"
+                anchors.left: tagID.right
+                anchors.bottom: tagID.bottom
+            }
             Text {
                 id: tagLastUpdateTime
                 text: "最后更新:"
@@ -330,6 +339,13 @@ ListViewDynamic{
                 anchors.left: tagLastUpdateTime.right
                 anchors.leftMargin: actualY(15)
                 anchors.top: tagLastUpdateTime.top
+            }
+            Rectangle{
+                width: actualY(6200)
+                height: 1
+                color: "#4d80b3"
+                anchors.left: tagLastUpdateTime.right
+                anchors.bottom: tagLastUpdateTime.bottom
             }
             Text {
                 id: tagDescription
