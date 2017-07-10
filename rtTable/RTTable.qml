@@ -211,7 +211,7 @@ ListViewDynamic{
                 id: tagName
                 text: description
                 color: "#333333"
-                width: actualX(270)
+                width: actualX(280)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
@@ -231,7 +231,7 @@ ListViewDynamic{
                 id: tagValue
                 text: value
                 color: "#333333"
-                width: actualX(160)
+                width: actualX(180)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
@@ -251,7 +251,7 @@ ListViewDynamic{
                 id: unit
                 text: uint
                 color: "#333333"
-                width: actualX(100)
+                width: actualX(120)
                 wrapMode: Text.Wrap
                 font.pixelSize: actualY(30)
                 horizontalAlignment: Text.AlignLeft
@@ -349,7 +349,7 @@ ListViewDynamic{
             }
             Text {
                 id: tagDescription
-                text: "描述:"
+                text: "描    述:"
                 color: "#ffffff"
                 width: actualX(115)
                 height: actualY(65)
