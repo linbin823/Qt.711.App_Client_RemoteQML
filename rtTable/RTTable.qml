@@ -224,7 +224,7 @@ ListViewDynamic{
                 width: 1
                 height: actualY(40)
                 color: "#cccccc"
-                anchors.left: tagName.left
+                anchors.left: tagName.right
                 anchors.verticalCenter: parent.verticalCenter
             }
             Text {
@@ -237,7 +237,7 @@ ListViewDynamic{
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: tagName.left
+                anchors.left: tagName.right
                 anchors.leftMargin: actualY(20)
             }
             Rectangle{
@@ -257,7 +257,7 @@ ListViewDynamic{
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: tagValue.left
+                anchors.left: tagValue.right
                 anchors.leftMargin: actualY(20)
             }
             Image {
@@ -309,10 +309,10 @@ ListViewDynamic{
                 anchors.top: tagID.top
             }
             Rectangle{
-                width: actualY(6200)
+                width: actualY(620)
                 height: 1
                 color: "#4d80b3"
-                anchors.left: tagID.right
+                anchors.left: tagID.left
                 anchors.bottom: tagID.bottom
             }
             Text {
@@ -341,10 +341,10 @@ ListViewDynamic{
                 anchors.top: tagLastUpdateTime.top
             }
             Rectangle{
-                width: actualY(6200)
+                width: actualY(620)
                 height: 1
                 color: "#4d80b3"
-                anchors.left: tagLastUpdateTime.right
+                anchors.left: tagLastUpdateTime.left
                 anchors.bottom: tagLastUpdateTime.bottom
             }
             Text {
