@@ -177,7 +177,7 @@ ListViewDynamic{
                                 }
                                 realtimeDataTable.loadedSize += appendCount;
                             } );
-                    }
+                    }//end of function initLoad
                 }//end of ComboBox
             }
         }//end of control bar
@@ -283,33 +283,78 @@ ListViewDynamic{
             color: "#003366"
             Text {
                 id: tagID
-                text: "测点编号:" + id
+                text: "测点编号:"
                 color: "#ffffff"
-                width: actualX(180)
-                font.pixelSize: actualY(24)
-                horizontalAlignment: Text.Text.AlignJustify
-                verticalAlignment: Text.AlignVCenter
-                anchors.verticalCenter: parent.verticalCenter
+                width: actualX(115)
+                height: actualY(65)
+                y:actualY(0)
                 anchors.left: parent.left
                 anchors.leftMargin: actualY(50)
-
-
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.AlignJustify
+                verticalAlignment: Text.AlignVCenter
+            }
+            Text{
+                text: id
+                color: "#ffffff"
+                width: actualX(500)
+                height: actualY(65)
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                anchors.left: tagID.right
+                anchors.leftMargin: actualY(15)
+                anchors.top: tagID.top
             }
             Text {
                 id: tagLastUpdateTime
-                text: "最后更新:  " + lastUpdateTime
-                color: "black"
+                text: "最后更新:"
+                color: "#ffffff"
+                width: actualX(115)
+                height: actualY(70)
+                y:actualY(65)
+                anchors.left: parent.left
+                anchors.leftMargin: actualY(50)
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.AlignJustify
+                verticalAlignment: Text.AlignVCenter
+            }
+            Text{
+                text:  lastUpdateTime
+                color: "#ffffff"
+                width: actualX(500)
+                height: actualY(70)
                 font.pixelSize: actualY(24)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
+                anchors.left: tagLastUpdateTime.right
+                anchors.leftMargin: actualY(15)
+                anchors.top: tagLastUpdateTime.top
             }
             Text {
                 id: tagDescription
-                text: "描述:  " + description
-                color: "black"
+                text: "描述:"
+                color: "#ffffff"
+                width: actualX(115)
+                height: actualY(65)
+                y:actualY(135)
+                anchors.left: parent.left
+                anchors.leftMargin: actualY(50)
+                font.pixelSize: actualY(24)
+                horizontalAlignment: Text.Text.AlignJustify
+                verticalAlignment: Text.AlignVCenter
+            }
+            Text{
+                text:  description
+                color: "#ffffff"
+                width: actualX(500)
+                height: actualY(65)
                 font.pixelSize: actualY(24)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
+                anchors.left: tagDescription.right
+                anchors.leftMargin: actualY(15)
+                anchors.top: tagDescription.top
             }
         }//end of detailBarContent
 

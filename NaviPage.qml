@@ -98,8 +98,8 @@ StackView {
                 height: naviContent.width * 0.45
                 Image{
                     id: snapShotPic
-                    height: delegateRoot.height * 0.8
-                    width:  delegateRoot.height * 0.8
+                    height: actualY(200)
+                    width:  actualX(200)
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     source: snapShot
@@ -109,20 +109,25 @@ StackView {
                 }
                 Text{
                     id: snapShotText
-                    width: snapShotPic.width
-                    height: snapShotPic.height * 0.3
                     anchors.horizontalCenter: snapShotPic.horizontalCenter
                     anchors.verticalCenter: snapShotPic.verticalCenter
-                    anchors.verticalCenterOffset: snapShotPic.height * 0.35
-                    font.pixelSize: height * 0.5
+                    anchors.verticalCenterOffset: snapShotPic.height * 0.3
+                    font.pixelSize: actualY(26)
                     text: name
-                    color: "white"
+                    color: "#333333"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment:   Text.AlignTop
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: {
+                    onPressed: {
+                        snapShotPic.source = snapShotPressed
+                    }
+                    onCanceled: {
+                        snapShotPic.source = snapShot
+                    }
+                    onReleased: {
+                        snapShotPic.source = snapShot
                         moduleLoader.setSource(enterance, {"wholeDataUrl" : wholeDataUrl})
                         naviRoot.push(moduleLoader)
                         titleChanged( name )
