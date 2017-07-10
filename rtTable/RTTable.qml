@@ -224,7 +224,7 @@ ListViewDynamic{
                 width: 1
                 height: actualY(40)
                 color: "#cccccc"
-                anchors.left: tagName.right
+                anchors.left: tagName.left
                 anchors.verticalCenter: parent.verticalCenter
             }
             Text {
@@ -237,7 +237,7 @@ ListViewDynamic{
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: tagName.right
+                anchors.left: tagName.left
                 anchors.leftMargin: actualY(20)
             }
             Rectangle{
@@ -257,7 +257,7 @@ ListViewDynamic{
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: tagValue.right
+                anchors.left: tagValue.left
                 anchors.leftMargin: actualY(20)
             }
             Image {
