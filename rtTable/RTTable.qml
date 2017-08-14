@@ -209,7 +209,7 @@ ListViewDynamic{
             color: "white"
             Text {
                 id: tagName
-                text: description
+                text: point_name
                 color: "#333333"
                 width: actualX(280)
                 wrapMode: Text.Wrap
@@ -357,7 +357,7 @@ ListViewDynamic{
                 anchors.left: parent.left
                 anchors.leftMargin: actualY(50)
                 font.pixelSize: actualY(24)
-                horizontalAlignment: Text.Text.AlignJustify
+                horizontalAlignment: Text.AlignJustify
                 verticalAlignment: Text.AlignVCenter
             }
             Text{

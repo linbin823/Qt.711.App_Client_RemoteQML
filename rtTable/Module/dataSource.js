@@ -1,4 +1,3 @@
-
 function subSystemsName(serverUrl, process){
     var xhr = new XMLHttpRequest();
     var url = serverUrl+"/admin2.php?m=dcappinterface&f=getpointlist&c=all&type=info"
@@ -18,7 +17,7 @@ function subSystemsName(serverUrl, process){
             try{
                 var res = JSON.parse( xhr.responseText.trim() )
             }catch(e){
-                console.log(e)
+//                console.log(e)
                 return;
 
             }
@@ -40,7 +39,7 @@ function loadTagInfo(serverUrl,subsystem,offset,number,process){
             //console.log( "loadTagInfoResponseHeaders" + xhr.getAllResponseHeaders())
         }
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            //console.log( "loadTagInfoResponseText" + xhr.responseText)
+            console.log( "loadTagInfoResponseText" + xhr.responseText)
             try{
                 var res = JSON.parse( xhr.responseText.trim() )
             }catch(e){
